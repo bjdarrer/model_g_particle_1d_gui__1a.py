@@ -41,7 +41,7 @@ import matplotlib
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from scipy.integrate import solve_ivp
 
 try:
@@ -675,7 +675,8 @@ class App(tk.Tk):
         fps = max(8, int(len(t_eval) / max(1, float(model.gp.Tfinal)/2)))
         self.status.set(f"Rendering MP4 (frames={len(t_eval)}, fps={fps})...")
 
-        fig = plt.Figure(figsize=(9, 4.5), dpi=120)
+        fig = matplotlib.figure.Figure(figsize=(9, 4.5), dpi=120)
+        canvas = FigureCanvas(fig)
         ax = fig.add_subplot(111)
         ax.set_xlabel("x")
         ax.grid(True)
@@ -685,6 +686,7 @@ class App(tk.Tk):
             for k in range(len(t_eval)):
                 yk = sol.y[:, k]
                 pG, pX, pY = model.unpack(yk)
+
                 ax.clear()
                 ax.plot(model.x, pY, label="pY (Y)", linewidth=1.5)
                 ax.plot(model.x, pG, label="pG (G)", linewidth=1.0)
@@ -693,14 +695,11 @@ class App(tk.Tk):
                 ax.set_xlabel("x")
                 ax.grid(True)
                 ax.legend(loc="best")
-                # draw to buffer
-                fig.canvas.draw()
-                # convert to image
-                import io
-                buf = np.frombuffer(fig.canvas.tostring_rgb(), dtype=np.uint8)
+
+                canvas.draw()
                 w, h = fig.canvas.get_width_height()
-                frame = buf.reshape((h, w, 3))
-                writer.append_data(frame)
+                frame = np.frombuffer(canvas.buffer_rgba(), dtype=np.uint8).reshape((h, w, 4))
+                writer.append_data(frame[:, :, :3])  # drop alpha
         finally:
             writer.close()
 
