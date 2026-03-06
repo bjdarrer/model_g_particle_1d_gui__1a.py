@@ -10,6 +10,16 @@ Model G Particle 1D — GUI Explorer (SAFE-ish)
 "model_g_particle_1d_safe__1d.py"
 - with ChatGPT 5.2 writing it and Brendan guiding it to produce a clean code.
 
+Main paper used for this similation GUI explorer:
+International Journal of General Systems
+Vol. 42, No. 5, May 2013, 1–24
+Stationary Dissipative Solitons of Model G
+Matthew Pulver and Paul A. LaViolette
+Blue Science, Los Angeles, California USA
+Starburst Foundation, Schenectady, New York USA
+(Received 7 July 2012; final version received 12 February 2013)
+https://starburstfound.org/downloads/physics/model_g.pdf
+
 Tested for: Ubuntu 24.04.3 LTS on i7-4790 (Optiplex 7020/9020), Python 3.10+
 
 Key ideas (per SQK Model G):
