@@ -29,6 +29,7 @@ Run:
 ...............INSTRUCTIONS ON USE OF GUI PARTICLE FINDER..................................
 
 Can you help me find new subatomic particles in Model G of SQK, using the starburst simulator here: @ https://starburstfound.org/computer-simulation-of-model-g/ . This simulator is set up initially with parameters to model a neutral like particle similar to a neutron (Matt Pulver who found the neutron parameters, said it was like looking for a needle in a hey stack!). Can you help me use it model charged particles such as a proton or an electron in Model G (i.e. guiding me to input the correct parameters of these subatomic particles)? I attach papers here that may help guide you with this.
+
 Thought for 47s
 
 ChatGPT 5.2:
