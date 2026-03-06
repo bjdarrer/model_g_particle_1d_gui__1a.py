@@ -27,6 +27,7 @@ Run:
     python3 model_g_particle_1d_gui__1a.py
 
 ...............INSTRUCTIONS ON USE OF GUI PARTICLE FINDER..................................
+
 Can you help me find new subatomic particles in Model G of SQK, using the starburst simulator here: @ https://starburstfound.org/computer-simulation-of-model-g/ . This simulator is set up initially with parameters to model a neutral like particle similar to a neutron (Matt Pulver who found the neutron parameters, said it was like looking for a needle in a hey stack!). Can you help me use it model charged particles such as a proton or an electron in Model G (i.e. guiding me to input the correct parameters of these subatomic particles)? I attach papers here that may help guide you with this.
 Thought for 47s
 
@@ -275,4 +276,5 @@ and the current neutron-like preset values,
 …then I can translate the search plan above into specific candidate parameter sets in the simulator’s exact units/fields (e.g., “set k5 to 0.86; set k−2 to 0.12; flip χ sign; increase D_Y to 5,” etc.), and lay them out as “Trial 1… Trial 2… Trial 3…”
 
 For now, the guidance above is the correct physics-to-UI control logic based directly on the attached papers’ definitions of the variables, polarity, and parameter mappings.
+
 .................................................
