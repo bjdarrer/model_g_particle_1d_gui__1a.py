@@ -13,7 +13,8 @@
 Model G Particle 1D — GUI Explorer (SAFE-ish)
 - Built from Brendan's "model_g_particle_1d_safe__1d.py" and adapted into a GUI parameter explorer.
 - Purpose: help you *search* for charged-polarity soliton states (proton-like vs electron-like polarity) by
-  adjusting Model G parameters and seed forcing χ(x,t), then running quick simulations and computing diagnostics.
+  adjusting Model G parameters and seed forcing χ(x,t), then running quick simulations and computing
+  diagnostics.
 
 - Written by Brendan Darrer aided by ChatGPT 5.2 date: 5th March 2026 21:39 GMT
 - ("1d" version updated 6th March 2026 06:03 GMT)
@@ -24,9 +25,15 @@ Model G Particle 1D — GUI Explorer (SAFE-ish)
 
 Papers used for this simulation GUI explorer:
 
-[1] International Journal of General Systems, Vol. 42, No. 5, May 2013, 1–24, Stationary Dissipative Solitons of Model G, Matthew Pulver and Paul A. LaViolette, Blue Science, Los Angeles, California USA, Starburst Foundation, Schenectady, New York USA, (Received 7 July 2012; final version received 12 February 2013), https://starburstfound.org/downloads/physics/model_g.pdf , As (model_g (1)) below.
+[1] International Journal of General Systems, Vol. 42, No. 5, May 2013, 1–24, Stationary Dissipative 
+Solitons of Model G, Matthew Pulver and Paul A. LaViolette, Blue Science, Los Angeles, California USA, 
+Starburst Foundation, Schenectady, New York USA, (Received 7 July 2012; final version received 
+12 February 2013), https://starburstfound.org/downloads/physics/model_g.pdf , As (model_g (1)) below.
 
-[2] Darrer, Brendan & Coven, Justin & LaViolette, Paul. (2022). Subquantum kinetics: simulating subatomic particles in Model G with fluid dynamics. https://www.researchgate.net/publication/362456406_Subquantum_kinetics_simulating_subatomic_particles_in_Model_G_with_fluid_dynamics , As (SQK_ModelG_with_fluid_dynamics_…) below.
+[2] Darrer, Brendan & Coven, Justin & LaViolette, Paul. (2022). Subquantum kinetics: simulating 
+subatomic particles in Model G with fluid dynamics. 
+https://www.researchgate.net/publication/362456406_Subquantum_kinetics_simulating_subatomic_particles_in_Model_G_with_fluid_dynamics , 
+As (SQK_ModelG_with_fluid_dynamics_…) below.
 
 Tested for: Ubuntu 24.04.3 LTS on i7-4790 (Optiplex 7020/9020), Python 3.10+
 
@@ -50,14 +57,23 @@ Remember for Brendan's computer:
 python3 -m venv tf-env
 source tf-env/bin/activate
 ............................................................
-Can you help me find new subatomic particles in Model G of SQK, using the starburst simulator here: @ https://starburstfound.org/computer-simulation-of-model-g/ . This simulator is set up initially with parameters to model a neutral like particle similar to a neutron (Matt Pulver who found the neutron parameters, said it was like looking for a needle in a hey stack!). Can you help me use it model charged particles such as a proton or an electron in Model G (i.e. guiding me to input the correct parameters of these subatomic particles)? I attach papers here that may help guide you with this.
+Can you help me find new subatomic particles in Model G of SQK, using the starburst simulator here: 
+@ https://starburstfound.org/computer-simulation-of-model-g/ . This simulator is set up initially 
+with parameters to model a neutral like particle similar to a neutron (Matt Pulver who found the 
+neutron parameters, said it was like looking for a needle in a hey stack!). Can you help me use it 
+model charged particles such as a proton or an electron in Model G (i.e. guiding me to input the 
+correct parameters of these subatomic particles)? I attach papers here that may help guide you with this.
 Thought for 47s
 
 ChatGPT 5.2:
 
-Yes — I can help you use the Starburst Model-G simulator systematically to hunt for charged soliton “particle” states (proton-like, electron-like), starting from Matt’s neutron-like parameter set and then doing controlled parameter continuation + diagnostics.
+Yes — I can help you use the Starburst Model-G simulator systematically to hunt for charged soliton 
+“particle” states (proton-like, electron-like), starting from Matt’s neutron-like parameter set and 
+then doing controlled parameter continuation + diagnostics.
 
-Below is a practical workflow you can apply in the web simulator UI even if it only exposes the dimensional inputs (A, B, k’s, D’s, seed χ), using the mapping and physical interpretation given in the two papers you attached. 
+Below is a practical workflow you can apply in the web simulator UI even if it only exposes the 
+dimensional inputs (A, B, k’s, D’s, seed χ), using the mapping and physical interpretation given 
+in the two papers you attached. 
 
 model_g (1)
 
@@ -83,7 +99,8 @@ proton-like: ϕY core > 0 (and ϕX core < 0)
 
 electron-like: ϕY core < 0 (and ϕX core > 0)
 
-And you’ll want a stable localized soliton (Gaussian-ish core + oscillatory Turing tail) like in their figures. 
+And you’ll want a stable localized soliton (Gaussian-ish core + oscillatory Turing tail) like in 
+their figures. 
 
 model_g (1)
 
@@ -132,11 +149,13 @@ b = (k3 B)/(k−2 + k5) (if k3 is implicitly 1 in the simulator, then b ∝ B)
 
 a ∝ A (with additional scaling constants)
 
-This is powerful because it tells you what to vary in the UI to move “in the same direction” as the dimensionless theory.
+This is powerful because it tells you what to vary in the UI to move “in the same direction” as 
+the dimensionless theory.
 
 3) The single most important “charged-particle” trick: flip the seed polarity
 
-In the 2013 paper, the particle is nucleated by adding a negative Gaussian seed χ into the X equation, i.e. χ is negative (their χ = −exp(…)). 
+In the 2013 paper, the particle is nucleated by adding a negative Gaussian seed χ into the 
+X equation, i.e. χ is negative (their χ = −exp(…)). 
 
 model_g (1)
 
@@ -147,16 +166,20 @@ model_g (1)
 
 Practical implication in the simulator
 
-To search proton-like / positive polarity states: use the usual negative χ in X (the “neutron-like” setup is already seeded this way in many configs).
+To search proton-like / positive polarity states: use the usual negative χ in X (the “neutron-like” 
+setup is already seeded this way in many configs).
 
-To search electron-like / negative polarity states: try the opposite sign seed, i.e. positive χ in X (or equivalently seed negative in Y if your UI supports choosing which field gets χ).
+To search electron-like / negative polarity states: try the opposite sign seed, i.e. positive χ in X 
+(or equivalently seed negative in Y if your UI supports choosing which field gets χ).
 
-Caveat (important): The 2013 paper notes that in a globally subcritical “vacuum-like” state, negative charge polarity fluctuations may fail to nucleate a particle (their matter/antimatter polarity bias point). 
+Caveat (important): The 2013 paper notes that in a globally subcritical “vacuum-like” state, negative 
+charge polarity fluctuations may fail to nucleate a particle (their matter/antimatter polarity bias point). 
 
 model_g (1)
 
 
-In practice, that means: if “electron-like” won’t nucleate just by flipping χ, you likely must also shift the background closer to (or into) the supercritical regime (next section).
+In practice, that means: if “electron-like” won’t nucleate just by flipping χ, you likely must also 
+shift the background closer to (or into) the supercritical regime (next section).
 
 4) How to push the background into a regime where “electron-like” might exist
 
@@ -188,7 +211,8 @@ Increasing k−2 (holding k5) increases g
 
 Increasing k5 (holding k−2) decreases g
 
-This matters because G↔X coupling is central to the bifurcation behavior (and thus whether a given polarity can self-stabilize). 
+This matters because G↔X coupling is central to the bifurcation behavior (and thus whether a given 
+polarity can self-stabilize). 
 
 model_g (1)
 
@@ -208,7 +232,8 @@ The 2013 soliton example has dy substantially larger than dx (dy=12, dx=1).
 model_g (1)
 
 
-Your TF2-style example uses D_Y=1.95 with D_G=1, i.e. dy≈1.95, which is a different regime (it can still work, but it changes the pattern selection). 
+Your TF2-style example uses D_Y=1.95 with D_G=1, i.e. dy≈1.95, which is a different regime (it can 
+still work, but it changes the pattern selection). 
 
 SQK_ModelG_with_fluid_dynamics_…
 
@@ -219,7 +244,8 @@ while maintaining stability (avoid instantly chaotic patterns).
 
 5) How to tell “proton-like” vs “neutron-like” vs “electron-like” in the output
 
-Because these are toy-solutions in a dimensionless RD system, you need a consistent operational definition inside the simulator:
+Because these are toy-solutions in a dimensionless RD system, you need a consistent operational 
+definition inside the simulator:
 
 A. Core polarity test (fast)
 
@@ -242,16 +268,19 @@ The 2013 paper explicitly defines “core integrals” and “full integrals” 
 model_g (1)
 
 
-Even if their “particle example” wasn’t tuned to enforce zero net charge in the naive integral sense, this gives you a repeatable way to rank candidates.
+Even if their “particle example” wasn’t tuned to enforce zero net charge in the naive integral sense, 
+this gives you a repeatable way to rank candidates.
 
 C. Size / wavelength targeting (for “electron-like” vs nucleon-like)
 
-They emphasize that the Turing tail wavelength λ0 is a key “particle identifier” and is stable (boundary-independent). 
+They emphasize that the Turing tail wavelength λ0 is a key “particle identifier” and is stable 
+(boundary-independent). 
 
 model_g (1)
 
 
-So: if you eventually want “electron vs proton” separation, you will likely need to find parameter sets that generate different λ0 (then map λ0 to a target Compton wavelength via the physical scaling).
+So: if you eventually want “electron vs proton” separation, you will likely need to find parameter 
+sets that generate different λ0 (then map λ0 to a target Compton wavelength via the physical scaling).
 
 6) A concrete parameter-search recipe you can run today in the Starburst simulator
 
@@ -285,7 +314,8 @@ Keep a notebook table
 
 outcome: stable? polarity? λ0? Qproxy?
 
-This is basically “continuation + diagnostics,” which is how Matt likely found the neutron-like set in the first place — just made less painful.
+This is basically “continuation + diagnostics,” which is how Matt likely found the neutron-like set 
+in the first place — just made less painful.
 
 7) What I need from you to give “type-in-these-values” guidance (without more back-and-forth)
 
@@ -295,9 +325,12 @@ the exact parameter names it exposes (A/B/k’s/D’s/seed fields, etc.)
 
 and the current neutron-like preset values,
 
-…then I can translate the search plan above into specific candidate parameter sets in the simulator’s exact units/fields (e.g., “set k5 to 0.86; set k−2 to 0.12; flip χ sign; increase D_Y to 5,” etc.), and lay them out as “Trial 1… Trial 2… Trial 3…”
+…then I can translate the search plan above into specific candidate parameter sets in the simulator’s 
+exact units/fields (e.g., “set k5 to 0.86; set k−2 to 0.12; flip χ sign; increase D_Y to 5,” etc.), and 
+lay them out as “Trial 1… Trial 2… Trial 3…”
 
-For now, the guidance above is the correct physics-to-UI control logic based directly on the attached papers’ definitions of the variables, polarity, and parameter mappings.
+For now, the guidance above is the correct physics-to-UI control logic based directly on the attached 
+papers’ definitions of the variables, polarity, and parameter mappings.
 ............................................................
 """
 
