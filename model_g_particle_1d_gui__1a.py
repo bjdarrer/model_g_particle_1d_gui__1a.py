@@ -49,8 +49,6 @@ you help me use it model charged particles such as a proton or an electron in Mo
 guiding me to input the correct parameters of these subatomic particles)? I attach papers here 
 that may help guide you with this.
 
-Thought for 47s
-
 ChatGPT 5.2:
 
 Yes — I can help you use the Starburst Model-G simulator systematically to hunt for charged 
@@ -60,10 +58,6 @@ set and then doing controlled parameter continuation + diagnostics.
 Below is a practical workflow you can apply in the web simulator UI even if it only exposes the 
 dimensional inputs (A, B, k’s, D’s, seed χ), using the mapping and physical interpretation given 
 in the two papers you attached.
-
-model_g (1)
-
-SQK_ModelG_with_fluid_dynamics_…
 
 What “charge” means in Model G (what to look for)
 Pulver & LaViolette explicitly identify:
@@ -76,8 +70,6 @@ Positive charge ↔ positive ϕY (and negative ϕX)
 
 Negative charge ↔ negative ϕY (and positive ϕX)
 
-model_g (1)
-
 So, in the simulator, a “charged particle” should show a core polarity consistent with:
 
 proton-like: ϕY core > 0 (and ϕX core < 0)
@@ -86,17 +78,11 @@ electron-like: ϕY core < 0 (and ϕX core > 0)
 
 And you’ll want a stable localized soliton (Gaussian-ish core + oscillatory Turing tail) like in their figures.
 
-model_g (1)
-
 The key knobs you actually have in the simulator A. The “official” dimensionless knobs (paper form)
 Model G’s nondimensional form uses: dx, dy, a, b, g, p, q, s, u, w
 
-model_g (1)
-
 And the 2013 paper gives one working soliton set (their “particle” example): dx=1, dy=12, a=14, b=29, g=0.1, p=1, 
 q=1, s=0, u=0, w=0
-
-model_g (1)
 
 B. The simulator-style dimensional knobs (what your TF2/Starburst setups usually expose)
 
@@ -110,13 +96,9 @@ D_G, D_X, D_Y
 
 plus the seed fluctuation χ (amplitude/sign/width/time window)
 
-SQK_ModelG_with_fluid_dynamics_…
-
 C. Mapping between them (so we can reason cleanly)
 
 Pulver & LaViolette give the mapping (core pieces):
-
-model_g (1)
 
 dx = D_X / D_G
 
@@ -137,11 +119,7 @@ The single most important “charged-particle” trick: flip the seed polarity
 In the 2013 paper, the particle is nucleated by adding a negative Gaussian seed χ into the X equation, 
 i.e. χ is negative (their χ = −exp(…)).
 
-model_g (1)
-
 That drives ϕX negative at the core, which corresponds to positive ϕY polarity (positive charge polarity).
-
-model_g (1)
 
 Practical implication in the simulator
 
@@ -153,8 +131,6 @@ equivalently seed negative in Y if your UI supports choosing which field gets χ
 
 Caveat (important): The 2013 paper notes that in a globally subcritical “vacuum-like” state, negative 
 charge polarity fluctuations may fail to nucleate a particle (their matter/antimatter polarity bias point).
-
-model_g (1)
 
 In practice, that means: if “electron-like” won’t nucleate just by flipping χ, you likely must also shift 
 the background closer to (or into) the supercritical regime (next section).
@@ -182,16 +158,12 @@ Step 3 — adjust g = k−2/(k−2+k5) by varying k−2 or k5
 
 From your TF2-style config, you have k−2 and k5 available.
 
-SQK_ModelG_with_fluid_dynamics_…
-
 Increasing k−2 (holding k5) increases g
 
 Increasing k5 (holding k−2) decreases g
 
 This matters because G↔X coupling is central to the bifurcation behavior (and thus whether a given 
 polarity can self-stabilize).
-
-model_g (1)
 
 Practical sweep: Make small incremental changes, e.g.
 
@@ -205,12 +177,8 @@ Step 4 — adjust diffusion ratio dy = D_Y/D_G
 
 The 2013 soliton example has dy substantially larger than dx (dy=12, dx=1).
 
-model_g (1)
-
 Your TF2-style example uses D_Y=1.95 with D_G=1, i.e. dy≈1.95, which is a different regime (it can still 
 work, but it changes the pattern selection).
-
-SQK_ModelG_with_fluid_dynamics_…
 
 So, if you’re having trouble getting alternative polarity states, do a controlled sweep of:
 
@@ -229,8 +197,6 @@ proton-like: ϕY(0) > 0, ϕX(0) < 0
 
 electron-like: ϕY(0) < 0, ϕX(0) > 0
 
-model_g (1)
-
 B. “Net charge proxy” (better than eyeballing)
 
 If your simulator shows integrals or lets you export profiles, compute:
@@ -239,8 +205,6 @@ Qproxy = ∫ ϕY(r) dV (or in 2D, ∫ϕY r dr; in 3D, ∫ϕY r² dr)
 
 The 2013 paper explicitly defines “core integrals” and “full integrals” of the potentials as diagnostics.
 
-model_g (1)
-
 Even if their “particle example” wasn’t tuned to enforce zero net charge in the naive integral sense, 
 this gives you a repeatable way to rank candidates.
 
@@ -248,8 +212,6 @@ C. Size / wavelength targeting (for “electron-like” vs nucleon-like)
 
 They emphasize that the Turing tail wavelength λ0 is a key “particle identifier” and is stable 
 (boundary-independent).
-
-model_g (1)
 
 So: if you eventually want “electron vs proton” separation, you will likely need to find parameter 
 sets that generate different λ0 (then map λ0 to a target Compton wavelength via the physical scaling).
