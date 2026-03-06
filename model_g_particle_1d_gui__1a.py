@@ -937,6 +937,8 @@ class App(tk.Tk):
                 ax.set_xlabel("x")
                 ax.grid(True)
                 ax.legend(loc="best")
+                # Set y axis limits +/- 1.2 ---BJD 6.3.2026 06:11 GMT
+                ax.set_ylim(-1.2, 1.2)
 
                 canvas.draw()
                 w, h = fig.canvas.get_width_height()
