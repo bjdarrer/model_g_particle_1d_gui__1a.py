@@ -12,19 +12,17 @@ Papers used for this simulation GUI explorer:
 International Journal of General Systems,
 Vol. 42, No. 5, May 2013, 1–24,
 [1] Stationary Dissipative Solitons of Model G,
-As (model_g (1)) below.
 Matthew Pulver and Paul A. LaViolette,
 Blue Science, Los Angeles, California USA,
 Starburst Foundation, Schenectady, New York USA,
 (Received 7 July 2012; final version received 12 February 2013),
-https://starburstfound.org/downloads/physics/model_g.pdf
+https://starburstfound.org/downloads/physics/model_g.pdf , As (model_g (1)) below.
 
 &
 
 Darrer, Brendan & Coven, Justin & LaViolette, Paul. (2022).
-[2] Subquantum kinetics: simulating subatomic particles in Model G with fluid dynamics. 
-As (SQK_ModelG_with_fluid_dynamics_…) below.
-https://www.researchgate.net/publication/362456406_Subquantum_kinetics_simulating_subatomic_particles_in_Model_G_with_fluid_dynamics
+[2] Subquantum kinetics: simulating subatomic particles in Model G with fluid dynamics.
+https://www.researchgate.net/publication/362456406_Subquantum_kinetics_simulating_subatomic_particles_in_Model_G_with_fluid_dynamics , As (SQK_ModelG_with_fluid_dynamics_…) below.
 
 Tested for: Ubuntu 24.04.3 LTS on i7-4790 (Optiplex 7020/9020), Python 3.10+
 
